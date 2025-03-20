@@ -6,6 +6,10 @@ import { UserContext } from "../UserContext";
 const MyPage = () => {
   const { user, logout } = useContext(UserContext);
   const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("authToken"); // トークン削除
+    navigate("/"); // ログアウト後にログインページへリダイレクト
+  };
 
   useEffect(() => {
     if (!user) {
@@ -17,7 +21,7 @@ const MyPage = () => {
     <div>
       <h1>マイページ</h1>
       {user && <p>ユーザー名: {user.username}</p>}
-      <button onClick={logout}>ログアウト</button>
+      <button onClick={handleLogout}>ログアウト</button>
     </div>
   );
 };

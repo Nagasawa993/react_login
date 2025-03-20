@@ -32,6 +32,7 @@ const Login = () => {
     }
     if (user) {
       await login(username, password);
+      localStorage.setItem("authToken", "dummy-token"); // トークンを保存
       navigate("/MyPage"); // マイページへ遷移
     }else if(username !=='' && password !==''){
       setError("ユーザー名、もしくはパスワードが誤っています。");
